@@ -1,0 +1,35 @@
+server:
+  port: 8085
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: GtwySomz
+  cloud:
+    gateway:
+      routes:
+        - id: PymtSomz
+          uri: http://localhost:9811
+          predicates:
+            - Path=/pymt/**
+
+        - id: OrdrSomz
+          uri: http://localhost:9812
+          predicates:
+            - Path=/ordr/**
+
+        - id: Somzapp-orders
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/v1/orders/**
+
+
+        - id: SomzAuth
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/v1/auth/**
+
+        - id: Somzapp-payment
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/v1/payment/**
